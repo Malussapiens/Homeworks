@@ -9,12 +9,12 @@ while (i < numbers.Length)
     i++;
 }
 
-int max = numbers[0];
+int max = numbers[0];   //принимаем 1-й элемент за максимальный
 i = 1;
-while (i < numbers.Length)
+while (i < numbers.Length)  //проходим по массиву со 2-го элемента (первый уже посмотрели в стр.12)
 {
-    if (max < numbers[i]) { max = numbers[i]; }
+    if (max < numbers[i]) { max = numbers[i]; } //если max меньше текущего элемента, переприсваиваем max
     i++;
 }
 
-Console.WriteLine($"max={max}");
+Console.WriteLine($"max={max}");    //выводим результат

@@ -1,13 +1,13 @@
 ﻿//Задача 3: Напишите программу, которая на вход принимает число и выдаёт, является ли число чётным (делится ли оно на два без остатка).
 Console.WriteLine("Программа принимает на вход число и выдаёт, является ли число чётным.");
 Console.Write("Введите число:>");
-int number = int.Parse(Console.ReadLine());
-if (IsEven(number)) { Console.WriteLine("Число четное!"); }
-else { Console.WriteLine("Число нечетное!"); }
+int number = int.Parse(Console.ReadLine());     //Принимаем от пользователя число
+if (IsEven(number)) { Console.WriteLine("Число четное!"); }     //Если число четное, выводим сообщение
+else { Console.WriteLine("Число нечетное!"); }      //Если нечетное, выводим сообщение
 
-bool IsEven(int num)
+bool IsEven(int num)    //функция проверяет число на четность
 {
-    bool even = false;
-    if (num % 2 == 0) { even = true; }
-    return even;
+    bool even = false;  //изначально считаем число нечетным, устанавливаем переменную в false
+    if (num % 2 == 0) { even = true; }      //Если число четное, устанавливаем в true
+    return even;    //возвращаем результат
 }
