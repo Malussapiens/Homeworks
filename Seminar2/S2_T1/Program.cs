@@ -11,7 +11,7 @@ string GetUserInput(string message)
     return Console.ReadLine();
 }
 
-bool ValidateInput(double number)
+bool ValidateInput(double number)   //Проверяет, является ли число трехзначным
 {
     return (number > 99) && (number < 1000);
 }
@@ -26,12 +26,12 @@ Console.Clear();
 string input = GetUserInput("Введите трехзначное число: ");
 double number;
 
-if (!double.TryParse(input, out number))
+if (!double.TryParse(input, out number))    //Проверка, является ли ввод числом
 { ErrorMsg("Введите трехзначное число!"); }
 else
 {
     if (ValidateInput(number))
-    { Console.WriteLine($"Второй разряд числа {number} -> {((int)number / 10) % 10}"); }
+    { Console.WriteLine($"Второй разряд числа {number} -> {((int)number / 10) % 10}"); }    //Выводим второй разряд числа.
     else
     { ErrorMsg("Введите трехзначное число!"); }
 }
