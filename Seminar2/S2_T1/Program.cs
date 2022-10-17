@@ -11,27 +11,34 @@ string GetUserInput(string message)
     return Console.ReadLine();
 }
 
-bool ValidateInput(double number)   //Проверяет, является ли число трехзначным
+bool IsNumber(string input) //Проверка, является ли ввод числом
+{
+    int result;
+    return int.TryParse(input, out result);
+}
+
+
+bool ValidateInput(int number)   //Проверяет, является ли число трехзначным
 {
     return (number > 99) && (number < 1000);
 }
 
-void ErrorMsg(string message)
+void PrintMsg(string message)
 {
-    Console.WriteLine("Введите трехзначное число!");
+    Console.WriteLine(message);
 }
 
 
 Console.Clear();
 string input = GetUserInput("Введите трехзначное число: ");
-double number;
 
-if (!double.TryParse(input, out number))    //Проверка, является ли ввод числом
-{ ErrorMsg("Введите трехзначное число!"); }
+if (!IsNumber(input))    //Проверка, является ли ввод числом
+{ PrintMsg("Введите трехзначное число!"); }
 else
 {
+    int number=int.Parse(input);
     if (ValidateInput(number))
-    { Console.WriteLine($"Второй разряд числа {number} -> {((int)number / 10) % 10}"); }    //Выводим второй разряд числа.
+    { PrintMsg($"Второй разряд числа {number} -> {((int)number / 10) % 10}"); }    //Выводим второй разряд числа.
     else
-    { ErrorMsg("Введите трехзначное число!"); }
+    { PrintMsg("Введите трехзначное число!"); }
 }
