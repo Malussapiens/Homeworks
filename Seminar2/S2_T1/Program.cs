@@ -5,9 +5,9 @@
 // 782 -> 8
 // 918 -> 1
 
-string GetUserInput(string message)
+string GetUserInput(string message) //Принимает ввод от пользователя
 {
-    Console.Write("Введите трехзначное число: ");
+    Console.Write(message);
     return Console.ReadLine();
 }
 
@@ -23,7 +23,7 @@ bool ValidateInput(int number)   //Проверяет, является ли ч�
     return (number > 99) && (number < 1000);
 }
 
-void PrintMsg(string message)
+void PrintMsg(string message)   //Печатает сообщение в консоли
 {
     Console.WriteLine(message);
 }
@@ -31,14 +31,15 @@ void PrintMsg(string message)
 
 Console.Clear();
 string input = GetUserInput("Введите трехзначное число: ");
+string errorMessage = "Введите трехзначное число!";
 
 if (!IsNumber(input))    //Проверка, является ли ввод числом
-{ PrintMsg("Введите трехзначное число!"); }
+{ PrintMsg(errorMessage); }
 else
 {
     int number=int.Parse(input);
     if (ValidateInput(number))
     { PrintMsg($"Второй разряд числа {number} -> {((int)number / 10) % 10}"); }    //Выводим второй разряд числа.
     else
-    { PrintMsg("Введите трехзначное число!"); }
+    { PrintMsg(errorMessage); }
 }
