@@ -25,7 +25,7 @@ int[] GetCoordinates(string pointName)   //Получаем координаты
     return coordinates;
 }
 
-double GetDistance(int[] startPoint, int[] endPoint) ////Вычисляем расстояние между точками в осях X, Y
+double GetDistance(int[] startPoint, int[] endPoint) //Вычисляем расстояние между точками в осях X, Y
 {
     double distance = 0;
     for (int i = 0; i < 3; i++)
@@ -37,6 +37,8 @@ double GetDistance(int[] startPoint, int[] endPoint) ////Вычисляем ра
 
 int[] a = new int[3];
 int[] b = new int[3];
+Console.Clear();
+PrintMsg("Программа принимает на вход координаты двух точек и\nнаходит расстояние между ними в 3D пространстве.\n");
 a = GetCoordinates("A");
 b = GetCoordinates("B");
 double distance=GetDistance(a,b);
