@@ -12,7 +12,7 @@ int GetUserInput(string message) //Принимает ввод от пользо
     return int.Parse(Console.ReadLine());
 }
 
-bool Validate(int number) //проверяем, что число больше нуля
+bool Validate(int number) //проверяем, что число не отрицательное
 {
     if (number < 0)
     {
