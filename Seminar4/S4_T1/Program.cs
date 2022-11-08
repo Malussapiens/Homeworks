@@ -50,6 +50,7 @@ int MyPowRecursive(int number, int pow) //рекурсивно вычисляе�
     else return MyPowRecursive(number * number, pow / 2);
 }
 
+Console.Clear();
 PrintMsg("Программа принимает на вход два числа (A и B) и возводит число A в натуральную степень B.\n");
 int number = GetUserInput("Введите число A");
 int pow = GetUserInput("Введите число B");
