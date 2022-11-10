@@ -37,6 +37,30 @@ int[] GetRandomArray(int minRandom, int maxRandom, int arrSize) //Возвращ
     return arr;
 }
 
+int[] CreateRandomArray()
+{
+    int arrSize, minRandom, maxRandom;
+    int[] arr = new int[0];
+    arrSize = GetUserInput("Введите размерность массива (0/ENTER для восьми элементов)");
+    if (Validate(arrSize))
+    {
+        minRandom = GetUserInput("Введите нижнюю границу диапазона (включительно)");
+        maxRandom = GetUserInput("Введите верхнюю границу диапазона (включительно)");
+        if (minRandom < maxRandom)
+        {
+            if (arrSize == 0) arrSize = 8;
+            arr = GetRandomArray(minRandom, maxRandom, arrSize);
+            PrintMsg("Ваш массив: ");
+            PrintArray(arr);
+        }
+        else
+        {
+            PrintMsg("Нижняя граница должна быть меньше верхней!");
+        }
+    }
+    return arr;
+}
+
 void PrintArray(int[] array)
 {
     foreach (int number in array)
@@ -50,4 +74,20 @@ bool IsEven(int number)
     return (number % 2 == 0);
 }
 
-Console.WriteLine(IsEven(8));
+int OddPositionSum(int[] array)
+{
+    int sum = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (!IsEven(i))
+        { sum += array[i]; }
+    }
+    return sum;
+}
+
+
+Console.Clear();
+PrintMsg("Программа находит сумму элементов, стоящих на нечётных позициях в массиве.\n");
+int[] arr = CreateRandomArray();
+if (arr.Length > 0)
+    PrintMsg($"\n Сумма нечетных элементов: {OddPositionSum(arr)}");
