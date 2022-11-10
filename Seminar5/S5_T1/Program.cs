@@ -28,7 +28,6 @@ bool Validate(int number) //проверяем, что число больше �
 
 int[] GetRandomArray(int minRandom, int maxRandom, int arrSize) //Возвращает массив размерностью arrSize, заполненный случайными числами из диапазона [minRandom; maxRandom]
 {
-    Console.WriteLine(arrSize);
     int[] arr = new int[arrSize];
 
     for (int i = 0; i < arrSize; i++)
