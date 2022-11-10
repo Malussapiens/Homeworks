@@ -1,7 +1,7 @@
-﻿// Задача 1: Задайте массив заполненный случайными положительными трёхзначными числами.
-// Напишите программу, которая покажет количество чётных чисел в массиве.
-
-// [345, 897, 568, 234] -> 2
+﻿// Задача 2: Задайте одномерный массив, заполненный случайными числами. 
+// Найдите сумму элементов, стоящих на нечётных позициях.
+// [3, 7, 23, 12] -> 19
+// [-4, -6, 89, 6] -> 0
 
 void PrintMsg(string message)   //выводим сообщение на экран
 {
@@ -50,22 +50,4 @@ bool IsEven(int number)
     return (number % 2 == 0);
 }
 
-int EvenCount(int[] array)  //Подсчитывает количество четных чисел в массиве
-{
-    int count = 0;
-    foreach (int integer in array)
-    {
-        if (IsEven(integer))
-        { count++; }
-    }
-    return count;
-}
-
-Console.Clear();
-PrintMsg("Программа покажет количество чётных чисел в массиве.\n");
-int arrSize = GetUserInput("Введите размерность массива");
-int min = 100, max = 999;
-int[] array = GetRandomArray(min, max, arrSize);
-PrintArray(array);
-Console.WriteLine();
-Console.WriteLine($"В массиве содержится {EvenCount(array)} четных чисел\n");
+Console.WriteLine(IsEven(8));
