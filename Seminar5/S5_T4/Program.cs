@@ -26,22 +26,39 @@ bool Validate(int number) //проверяем, что число больше �
     return true;
 }
 
-string GetRecursiveNumbers(int number)
+void PrintTriangleSequence2(int number) //Итеративно выводит треугольную последовательность
 {
-    int sum = 0;
-    int j = 0;
+    for (int n = 1; n <= number; n++)   //циклом будем перебирать членов последовательности 
+                                        //до заданного числа
+    {
+        int triangle = 0;    //здесь будем сохранять n-e треугольное число
+        int res = 1;  //здесь будем сохранять число для вывода
+        for (int count = 1; triangle < n; count++)  //циклом вычисляем число для вывода (count раз, но 
+                                                    //не более n) по закону прогрессии треугольных чисел 
+        {
+            res = count;
+            triangle += count;
+        }
+        Console.Write(res + " ");
+    }
+}
+string PrintTriangleSequence(int number)    //Рекурсивно выводит треугольную последовательность.
+{
+
     // Базовый случай 
     if (number == 1)
-    { PrintMsg("1"); }
+    { PrintMsg($"{1}"); }
     else
     {
-        for (int i = 1; sum < number; i++)
+        int triangle = 0;
+        int res = 0;
+        for (int count = 1; triangle < number; count++)
         {
-            sum += i;
-            j = i;
+            triangle += count;
+            res = count;
         }
         // Шаг рекурсии / рекурсивное условие
-        PrintMsg($"{GetRecursiveNumbers(--number)} {j}");
+        PrintMsg($"{PrintTriangleSequence(--number)} {res}");
     }
     return "";
 }
@@ -50,5 +67,5 @@ Console.Clear();
 PrintMsg("Программа выводит последовательность чисел, с заданым количеством этих чисел\n");
 int input = GetUserInput("Введите число");
 if (Validate(input))
-    {GetRecursiveNumbers(input);}
+{ PrintTriangleSequence(input); }
 
