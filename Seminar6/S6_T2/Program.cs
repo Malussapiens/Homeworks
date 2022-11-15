@@ -35,8 +35,8 @@ double[,] GetCoeffs(double[,] matrix)   //заполняет матрицу 2х2
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        matrix[i, 0] = GetUserInput($"Введите коэффициент k{i}");
         matrix[i, 1] = GetUserInput($"Введите коэффициент b{i}");
+        matrix[i, 0] = GetUserInput($"Введите коэффициент k{i}");
     }
     return matrix;
 }
