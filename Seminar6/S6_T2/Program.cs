@@ -62,6 +62,7 @@ double[] GetCrossingPoint(double[,] coordinates) //возвращает точк
         result[1] = coordinates[0, 1];
         return result;
     }
+    //при k1!=k2 и b1!=b2 точка пересечения будет в координатах x=(b2-b1)/(k1-k2);y=k1x+b1
     result[0] = (coordinates[1, 1] - coordinates[0, 1]) / (coordinates[0, 0] - coordinates[1, 0]);
     result[1] = coordinates[0, 0] * result[0] + coordinates[0, 1];
     return result;
