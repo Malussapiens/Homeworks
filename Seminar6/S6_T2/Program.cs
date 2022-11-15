@@ -3,6 +3,9 @@
 // значения b1, k1, b2 и k2 задаются пользователем.
 // b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
 
+const int line1 = 0, line2 = 1;
+const int k = 0, b = 1;
+
 void PrintMsg(string message)   //выводим сообщение на экран
 {
     Console.Write(message);
@@ -35,38 +38,42 @@ double[,] GetCoeffs(double[,] matrix)   //заполняет матрицу 2х2
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        matrix[i, 1] = GetUserInput($"Введите коэффициент b{i}");
-        matrix[i, 0] = GetUserInput($"Введите коэффициент k{i}");
+        matrix[i, b] = GetUserInput($"Введите коэффициент b{i + 1}");
+        matrix[i, k] = GetUserInput($"Введите коэффициент k{i + 1}");
     }
     return matrix;
 }
 
-bool IsParallel(double[,] coordinates)  //если k1=k2 и b1!=b2, то прямые параллельны
+bool IsParallel(double[,] coeffs)  //если k1=k2 и b1!=b2, то прямые параллельны
 {
-    return ((coordinates[0, 0] == coordinates[1, 0]) && (coordinates[0, 1] != coordinates[1, 1]));
+    return ((coeffs[line1, k] == coeffs[line2, k]) && (coeffs[line1, b] != coeffs[line2, b]));
 }
 
-bool IsMatch(double[,] coordinates)  //если k1=k2 и b1=b2, то прямые параллельны
+bool IsMatch(double[,] coeffs)  //если k1=k2 и b1=b2, то прямые параллельны
 {
-    return (coordinates[0, 1] == coordinates[1, 1] && (coordinates[0, 1] == coordinates[1, 1]));
+    return (coeffs[line1, k] == coeffs[line2, k] && (coeffs[line1, b] == coeffs[line2, b]));
 }
 
-double[] GetCrossingPoint(double[,] coordinates) //возвращает точку пересечения линейных функций Kx+b
-                                                 //coordinates[i, 0] - k, coordinates[i, 1] - b
+double[] GetCrossingPoint(double[,] coeffs)     //возвращает точку пересечения линейных функций Kx+b
+                                                //coordinates[i, 0] - k, coordinates[i, 1] - b
 {
     double[] result = new double[2];
+    int x = 0, y = 1;
+
     //при k1!=k2 и b1=b2 точка пересечения будет (0;b)
-    if (coordinates[0, 0] != coordinates[1, 0] && coordinates[0, 1] == coordinates[1, 1])
+    //if (coordinates[0, 0] != coordinates[1, 0] && coordinates[0, 1] == coordinates[1, 1])
+    if (coeffs[line1, k] != coeffs[line2, k] && coeffs[line1, b] == coeffs[line2, b])
     {
         result[0] = 0;
-        result[1] = coordinates[0, 1];
+        result[1] = coeffs[line1, b];
         return result;
     }
-    //при k1!=k2 и b1!=b2 точка пересечения будет в координатах x=(b2-b1)/(k1-k2);y=k1x+b1
-    result[0] = (coordinates[1, 1] - coordinates[0, 1]) / (coordinates[0, 0] - coordinates[1, 0]);
-    result[1] = coordinates[0, 0] * result[0] + coordinates[0, 1];
+    //при k1!=k2 и b1!=b2 точка пересечения будет в координатах x=(b2-b1)/(k1-k2);y=k1*x+b1
+    result[x] = (coeffs[line2, b] - coeffs[line1, b]) / (coeffs[line1, k] - coeffs[line2, k]);
+    result[y] = coeffs[line1, k] * result[x] + coeffs[line1, b];
     return result;
 }
+
 
 PrintMsg("Программа найдёт точку пересечения двух прямых,\n");
 PrintMsg("заданных уравнениями y = k1 * x + b1, y = k2 * x + b2;\n");
