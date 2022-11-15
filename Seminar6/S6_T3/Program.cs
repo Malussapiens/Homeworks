@@ -86,7 +86,7 @@ void PrintMatrixReal(double[,] matrix)  //Выводит на экран мат�
 double GetMaxInRow(double[,] matrix, int row)   //Возвращает наибольшее значение в ряду матрицы
 {
     double max = matrix[row, 0];
-    for (int i = 1; i < matrix.GetLength(0); i++)
+    for (int i = 1; i < matrix.GetLength(1); i++)
     {
         if (max < matrix[row, i])
             max = matrix[row, i];
@@ -116,7 +116,7 @@ double[] GetMaximumsInRows(double[,] matrix)  //Возвращает масси�
     return array;
 }
 
-double[] GetMinimumsInRows(double[,] matrix)  //Возвращает массив с минимумами в столбцах матрицы
+double[] GetMinimumsInColumns(double[,] matrix)  //Возвращает массив с минимумами в столбцах матрицы
 {
     int counter = matrix.GetLength(1);
     double[] array = new double[counter];
@@ -157,7 +157,7 @@ PrintMsg(" = ");
 double sumMax = SumArrayReal(array);    //Запоминаем сумму максимумов в строке
 PrintMsg($"{sumMax:f2}");
 
-array = GetMinimumsInRows(matrix);    //3. Получаем массив минимумов в ряду и
+array = GetMinimumsInColumns(matrix);    //3. Получаем массив минимумов в ряду и
                                 // печатаем сумму элементов массива.
 PrintMsg("\nСумма минимумов в столбцах: ");
 PrintArrayReal(array, " + ");
