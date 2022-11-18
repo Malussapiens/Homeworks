@@ -50,6 +50,20 @@ void PrintMatrix(int[,] matrix)  //Выводит на экран содержи
     }
 }
 
+bool IsInbound(int[,] matrix, int position)
+{
+    int mLength = matrix.GetLength(0) * matrix.GetLength(1);
+    return (position > 0 && position <= mLength);
+}
+
+int GetNumByPosition(int[,] matrix, int position)
+{
+    int mCoord = (position - 1) / matrix.GetLength(0);
+    int nCoord = (position - 1) % matrix.GetLength(1);
+    return matrix[mCoord, nCoord];
+}
+
+
 Console.Clear();
 PrintMsg("Программа принимает на вход позиции элемента в двумерном массиве, \n");
 PrintMsg("и возвращает значение этого элемента или же указание,что такого элемента нет.\n");
@@ -61,11 +75,7 @@ PrintMsg("\n");
 PrintMatrix(matrix);
 int position = GetUserInput("Введите номер позиции");
 int mLength = mSize * nSize;
-if (position < 1 || position > mLength)
-{
+if (!IsInbound(matrix, position))
     PrintMsg("Такого элемента не существует!");
-    return;
-}
-int mCoord = (position - 1) / mSize, nCoord = (position - 1) % nSize;
-PrintMsg($"{mCoord}, {nCoord}\n");
-PrintMsg($"{position}-й элемент содержит значение {matrix[mCoord, nCoord]}");
+else
+    PrintMsg($"{position}-й элемент содержит значение {GetNumByPosition(matrix, position)}");
