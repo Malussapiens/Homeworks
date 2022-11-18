@@ -58,7 +58,7 @@ bool IsInbound(int[,] matrix, int position)
 
 int GetNumByPosition(int[,] matrix, int position)
 {
-    int mCoord = (position - 1) / matrix.GetLength(0);
+    int mCoord = (position - 1) / matrix.GetLength(1);
     int nCoord = (position - 1) % matrix.GetLength(1);
     return matrix[mCoord, nCoord];
 }
@@ -68,7 +68,7 @@ Console.Clear();
 PrintMsg("Программа принимает на вход позиции элемента в двумерном массиве, \n");
 PrintMsg("и возвращает значение этого элемента или же указание,что такого элемента нет.\n");
 PrintMsg("Отсчет позиции начинается с 1");
-int mSize = 5, nSize = 5;   //задаем размерность матрицы
+int mSize = 5, nSize = 3;   //задаем размерность матрицы
 int lowRndLimit = 0, upRndLimit = 10; //задаем пределы случайных чисел
 int[,] matrix = CreateRandomMatrixInt(mSize, nSize, lowRndLimit, upRndLimit);
 PrintMsg("\n");
