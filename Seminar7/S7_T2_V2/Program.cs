@@ -7,9 +7,7 @@
 //8 4 2 4
 //17 -> такого числа в массиве нет
 
-//это вариант решения задачи, как я ее понял из условия 
-//(поиск элемента по его порядковому номеру в матрице, начиная от левого верхнего угла)
-//второй вариант решения (после консультации) находится в папке S7_T2_V2
+//вариант решения после консультации (поиск элемента матрицы по координатам)
 
 void PrintMsg(string message)   //выводим сообщение на экран
 {
@@ -54,22 +52,19 @@ void PrintMatrix(int[,] matrix)  //Выводит на экран содержи
     }
 }
 
-bool IsInbound(int[,] matrix, int position)
+bool IsInbound(int[,] matrix, int mPos, int nPos)
 {
-    int mLength = matrix.GetLength(0) * matrix.GetLength(1);
-    return (position > 0 && position <= mLength);
+    return (mPos >= 0 && mPos < matrix.GetLength(0)
+            && nPos >= 0 && nPos < matrix.GetLength(1));
 }
 
-int GetNumByPosition(int[,] matrix, int position)
+int GetElementByPosition(int[,] matrix, int mPos, int nPos)
 {
-    int mCoord = (position - 1) / matrix.GetLength(1);
-    int nCoord = (position - 1) % matrix.GetLength(1);
-    return matrix[mCoord, nCoord];
+    return matrix[mPos, nPos];
 }
-
 
 Console.Clear();
-PrintMsg("Программа принимает на вход позиции элемента в двумерном массиве, \n");
+PrintMsg("Программа принимает на вход позиции элемента в двумерном массиве (строка и столбец), \n");
 PrintMsg("и возвращает значение этого элемента или же указание,что такого элемента нет.\n");
 PrintMsg("Отсчет позиции начинается с 1");
 int mSize = 5, nSize = 3;   //задаем размерность матрицы
@@ -77,9 +72,10 @@ int lowRndLimit = 0, upRndLimit = 10; //задаем пределы случай
 int[,] matrix = CreateRandomMatrixInt(mSize, nSize, lowRndLimit, upRndLimit);
 PrintMsg("\n");
 PrintMatrix(matrix);
-int position = GetUserInput("Введите номер позиции");
-int mLength = mSize * nSize;
-if (!IsInbound(matrix, position))
+int mPos = GetUserInput("Введите номер строки (m, нумерация с 1)");
+int nPos = GetUserInput("Введите столбца столбца (n, нумерация с 1)");
+if (!IsInbound(matrix, mPos - 1, nPos - 1))
     PrintMsg("Такого элемента не существует!");
 else
-    PrintMsg($"{position}-й элемент содержит значение {GetNumByPosition(matrix, position)}");
+    PrintMsg($"Элемент в {mPos} строке и {nPos} столбце содержит значение {GetElementByPosition(matrix, mPos - 1, nPos - 1)}");
+
