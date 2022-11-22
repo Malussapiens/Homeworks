@@ -11,6 +11,35 @@
 //(поиск элемента по его порядковому номеру в матрице, начиная от левого верхнего угла)
 //второй вариант решения (после консультации) находится в папке S7_T2_V2
 
+//работа с исключениями (из разбора ДЗ)
+int PromptInt(string strMessage)
+{
+    Console.Write(strMessage);
+    int temp;
+    if (int.TryParse(Console.ReadLine(), out temp))
+    {
+        return temp;
+    }
+
+    throw new Exception("Это не число!!!");
+}
+
+int Prompt(string message)
+{
+    while (true)
+    try
+    {
+        return PromptInt(message);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Вы чтото неправильно ввели. Ошибка: {e.Message}");
+    }
+}
+
+
+
+//исходный вариант
 void PrintMsg(string message)   //выводим сообщение на экран
 {
     Console.Write(message);
