@@ -40,7 +40,7 @@ void PrintMatrix(int[,] matrix)  //Выводит на экран содержи
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            Console.Write($"{matrix[i, j]}\t");
+            Console.Write($"{matrix[i, j]:d2}\t");
         }
         Console.Write("\n");
     }
@@ -91,7 +91,7 @@ int[,] GetSpiralMatrix(uint size)
     int[,] matrix = CreateMatrix(size, size);
     int left = 0, right = matrix.GetLength(1);
     int up = 0, down = matrix.GetLength(0);
-    int countStart = 0;
+    int countStart = 1;
     while (countStart < (size * size))
     {
         countStart = FillHorizonalLeftRight(matrix, up, left, right, countStart);
