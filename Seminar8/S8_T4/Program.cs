@@ -110,37 +110,4 @@ Console.Clear();
 PrintMsg("Программа заполняет по спирали квадратный массив.\n");
 uint size = GetUserInput("Введите размерность матрицы:");
 int[,] matrix = GetSpiralMatrix(size);
-
 PrintMatrix(matrix);
-
-// int[,] Spiral(int n)
-// {
-//     int[,] result = new int[n, n];
-
-//     int pos = 1;
-//     int count = n;
-//     int value = -n;
-//     int sum = -1;
-
-//     do
-//     {
-//         value = -1 * value / n;
-//         Console.WriteLine(value);
-//         Console.ReadLine();
-//         for (int i = 0; i < count; i++)
-//         {
-//             sum += value;
-//             result[sum / n, sum % n] = pos++;
-//         }
-//         value *= n;
-//         count--;
-//         for (int i = 0; i < count; i++)
-//         {
-//             sum += value;
-//             result[sum / n, sum % n] = pos++;
-//         }
-//     } while (count > 0);
-
-//     return result;
-// }
-
